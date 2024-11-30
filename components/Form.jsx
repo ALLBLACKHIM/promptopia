@@ -18,6 +18,7 @@ const Form = ({type, post, setPost, submitting, handleSubmit}) => {
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Your AI Prompt
           </span>
+          
           <textarea 
           value={post.prompt}
           onChange={(e) => setPost({ ...post, prompt: e.target.value })}
@@ -26,15 +27,20 @@ const Form = ({type, post, setPost, submitting, handleSubmit}) => {
           className="form_textarea"
           />
         </label>
+
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
-            Tag {" "}
-            <span className="font-normal">(#product, #webdevelopment, #coding)</span>
+            Tag{" "}
+            <span className="font-normal">
+              (#product, #web development, #coding)
+            </span>
           </span>
+
           <input
           value={post.tag}
           onChange={(e) => setPost({ ...post, tag: e.target.value })}
-          placeholder="#tag"
+          type="text"
+          placeholder="#Tag"
           required
           className="form_input"
           />
@@ -44,8 +50,9 @@ const Form = ({type, post, setPost, submitting, handleSubmit}) => {
           <Link href="/" className="text-gray-500 text-sm">
           Cancel
           </Link>
+
           <button type="submit" disabled={submitting} className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white">
-            {submitting ? `${type}...`: type}
+            {submitting ? `${type}ing...`: type}
           </button>
         </div>
       </form>
