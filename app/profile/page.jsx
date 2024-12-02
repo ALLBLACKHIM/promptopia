@@ -30,13 +30,19 @@ const MyProfile = () => {
   };
 
   const handleDelete = async (post) => {
-    const hasConfirmed = confirm("Are you sure you want to delete this post?");
+    const hasConfirmed = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
 
     if (hasConfirmed) {
       try {
-        await fetch(`/api/prompt/${post._id.toString()}`, {
+        const response = await fetch(`/api/prompt/${post._id.toString()}`, {
           method: "DELETE",
         });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         const filteredPosts = posts.filter((p) => p._id !== post._id);
 
